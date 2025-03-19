@@ -2,7 +2,7 @@
 import yt_dlp
 
 
-def download_video(url, output_path='./'):
+def download_video(url, output_path='.'):
     # Create a dictionary for the download options
     ydl_opts = {
         'format': 'bestvideo+bestaudio/best',  # Download best video and audio
