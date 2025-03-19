@@ -14,7 +14,7 @@ def housekeeping(file):
     st.write('File successfully downloaded!')
 
 
-def down_vid(yt, output_path='.'):
+def down_vid(yt):
     local_file = 'downloaded_file'
     # Create a dictionary for the download options
     ydl_opts = {
@@ -33,8 +33,8 @@ def down_vid(yt, output_path='.'):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([yt])
 
-        filename = subprocess.getoutput('yt-dlp --print filename https://youtu.be/CilN0KTNkoI').rsplit(
-            '.'+subprocess.getoutput('yt-dlp --print filename -o "%(ext)s" https://youtu.be/CilN0KTNkoI'))[0]
+        filename = subprocess.getoutput(f'yt-dlp --print filename {yt}').rsplit(
+            '.'+subprocess.getoutput(f'yt-dlp --print filename -o "%(ext)s" {yt}'))[0]
         local_file += '.mp4'
 
         with open(f'./{local_file}', 'rb') as fh:
@@ -67,8 +67,8 @@ def down_aud(yt):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([yt])
 
-        filename = subprocess.getoutput('yt-dlp --print filename https://youtu.be/CilN0KTNkoI').rsplit(
-            '.' + subprocess.getoutput('yt-dlp --print filename -o "%(ext)s" https://youtu.be/CilN0KTNkoI'))[0]
+        filename = subprocess.getoutput(f'yt-dlp --print filename {yt}').rsplit(
+            '.' + subprocess.getoutput(f'yt-dlp --print filename -o "%(ext)s" {yt}'))[0]
         local_file += '.mp3'
 
         with open(f'./{local_file}', 'rb') as fh:
